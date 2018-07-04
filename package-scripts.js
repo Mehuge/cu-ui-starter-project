@@ -1,3 +1,9 @@
+/**
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 const npsUtils = require('nps-utils');
 const requires = [ 'react', 'react-dom', 'es6-promise' ];
 const transpiled = 'build/transpiled/index.js';
@@ -8,12 +14,11 @@ module.exports = {
     // Cleaup everything (except node_modules)
     clean: {
       script: 'rimraf build dist',
-      everything: 'rimraf build dist node_modules',
     },
 
     // Complete build from clean to dist
     build: {
-      script: 'nps clean compile transpile sass distribute tidy',
+      script: 'nps clean compile transpile scss distribute tidy',
     },
 
     // Compile TypeScript -> JavaScript
@@ -23,7 +28,7 @@ module.exports = {
     transpile: 'babel build/preprocessed -d build/transpiled -q',
 
     // Compile CSS
-    sass: 'node-sass src/index.sass -o build/css --importer node_modules/sass-importer-node/sass-importer-node.js --quiet',
+    scss: 'node-sass src/index.scss -o build/css --importer node_modules/sass-importer-node/sass-importer-node.js --quiet',
 
     // Setup dist folder, and bundle the javascript for the browser
     distribute: {
@@ -47,12 +52,12 @@ module.exports = {
     watch: {
       // Run the watchers, and the webserver concurrently
       script: npsUtils.concurrent.nps(
-        'watch.ts', 'watch.sass', 'watch.images', 'watch.other',
+        'watch.ts', 'watch.scss', 'watch.images', 'watch.other',
         'watch.livereload', 'watch.browser'),
 
       // Watchers
       ts: 'watch -p "src/**/*.ts" -p "src/**/*.tsx" -c "nps update.ts"',
-      sass: 'watch -p "src/**/*.sass" -c "nps update.sass"',
+      scss: 'watch -p "src/**/*.scss" -c "nps update.scss"',
       images: 'watch -p "src/images/**/*" -c "nps copy.images"',
       other: 'watch -p "src/*.html" -p "src/*.ui" -c "nps copy.others"',
 
@@ -64,7 +69,7 @@ module.exports = {
     // Re-compile in response to updates detected by watchers
     update: {
       ts: 'nps compile transpile distribute.browserify',
-      sass: 'nps sass copy.css',
+      scss: 'nps scss copy.css',
     },
 
     // Short hand for build+watch
