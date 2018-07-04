@@ -1,0 +1,21 @@
+{
+  "name": "myui",
+  "mainFile": "index.html",
+  "layer": 3,
+  "handlesCharacter": true,
+  "handlesChat": true,
+  "handlesBeginChat": true,
+  "handlesConsole": true,
+  "handlesAnnouncements": true,
+  "handlesEnemyTarget": true,
+  "handlesFriendlyTarget": true,
+  "handlesCombatLog": true,
+  "handlesBuilding": true,
+  "handlesAbilities": true,
+  "handlesSkillStates": true,
+  "handlesEquippedGear": true,
+  "handlesInventory": true,
+  "handlesPlot": true,
+  "handlesConfig": true,
+  "handlesInput": true
+}

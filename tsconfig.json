@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "noImplicitAny": true,
+    "removeComments": false,
+    "outDir": "./build/preprocessed",
+    "sourceMap": false,
+    "jsx": "react",
+    "module": "commonjs",
+    "noImplicitUseStrict": true,
+    "noUnusedLocals": true,
+    "alwaysStrict": false,
+    "skipLibCheck": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "baseUrl": "src",
+    "paths": {
+    }
+  },
+  "plugins": [
+    { "name": "tslint-language-service"}
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "resolution": "typings",
+  "moduleResolution": "node",
+  "exclude": [
+    "node_modules",
+    "typings/browser.d.ts",
+    "typings/browser",
+    "typings/main.d.ts",
+    "typings/main",
+    "build",
+    "dist",
+    "publish"
+  ],
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}
