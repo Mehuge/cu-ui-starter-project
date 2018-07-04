@@ -14,7 +14,7 @@ const root = document.getElementById('ui');
 client.OnInitialized(() => {
   ReactDom.render(
     <ErrorBoundary outputErrorToConsole>
-      <h4>Hello Again Again World</h4>
+      <h4>Hello World</h4>
     </ErrorBoundary>,
     root);
 });

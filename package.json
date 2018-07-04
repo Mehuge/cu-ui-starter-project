@@ -12,8 +12,9 @@
   },
   "modules": {},
   "scripts": {
-    "init": "npm i && npm start build",
-    "start": "nps"
+    "start": "nps",
+    "setup": "npm i && npm start build",
+    "clean.all": "rimraf build dist node_modules || echo 'already cleaned'"
   },
   "babel": {
     "env": {
