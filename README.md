@@ -1,6 +1,11 @@
 Prerequisits
 --
-Install nodejs (which includes npm) from https://nodejs.org/en/download/
+- Install nodejs (which includes npm) from https://nodejs.org/en/download/
+- Install git https://git-scm.com/download/
+- Install `rimraf`
+<pre>
+npm i -g rimraf
+</pre>
 
 Installation
 --
@@ -8,6 +13,7 @@ This will clone the project, install dependencies and build the sample Hello Wor
 
     git clone https://github.com/mehuge/cu-ui-starter-project
     cd cu-ui-starter-project
+    rimraf .git
     npm run setup
 
 Building

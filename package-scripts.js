@@ -5,9 +5,12 @@
  */
 
 const npsUtils = require('nps-utils');
+
 const requires = [ 'react', 'react-dom', 'es6-promise' ];
 const transpiled = 'build/transpiled/index.js';
 const output = 'dist/js/index.js';
+
+const UI_NAME = 'sample-ui';
 
 module.exports = {
   scripts: {
@@ -74,5 +77,14 @@ module.exports = {
 
     // Short hand for build+watch
     dev: 'nps build watch',
+  },
+
+  // installers
+  install: {
+    hatchery: {
+      script: 'nps install.hatchery.clean install.hatchery.copy',
+      clean: 'rimraf \"%localappdata%/CSE/CamelotUnchained/4/INTERFACE/hud\"',
+      copy: 'copyup dist/**/* \"%localappdata%/CSE/CamelotUnchained/4/INTERFACE/' + UI_NAME + '\"',
+    }
   }
 }
