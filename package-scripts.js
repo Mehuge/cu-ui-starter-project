@@ -21,7 +21,11 @@ module.exports = {
 
     // Complete build from clean to dist
     build: {
-      script: 'nps clean compile transpile scss distribute tidy',
+      script: 'nps build.for.development',
+      for: {
+        development: 'nps clean compile transpile scss distribute tidy',
+        production: 'nps clean compile transpile scss distribute.production tidy',
+      }
     },
 
     // Compile TypeScript -> JavaScript
@@ -35,9 +39,15 @@ module.exports = {
 
     // Setup dist folder, and bundle the javascript for the browser
     distribute: {
-      script: 'nps distribute.dirs distribute.browserify copy',
+      script: 'nps distribute.development',
+      development: 'nps distribute.dirs distribute.browserify.development copy',
+      production: 'nps distribute.dirs distribute.browserify.production copy',
       dirs: 'mkdirp dist/js dist/css',
-      browserify: `browserify ${transpiled} ${['', ...requires].join(' -r ')} -o ${output} --fast --noparse=FILE -t [ envify --NODE_ENV production ]`,
+      browserify: {
+        script: 'nps distribute.browserify.development',
+        development: `browserify ${transpiled} ${['', ...requires].join(' -r ')} -o ${output} --fast --noparse=FILE -t [ envify --NODE_ENV production ]`,
+        production: `browserify -p [ tinyify --no-flat ] ${transpiled} ${['', ...requires].join(' -r ')} -o ${output} --fast --noparse=FILE -t [ envify --NODE_ENV production ]`,
+      },
     },
 
     // Copy resources to dist
