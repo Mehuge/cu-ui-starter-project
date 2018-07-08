@@ -93,10 +93,19 @@ module.exports = {
 
   // installers
   install: {
-    hatchery: {
-      script: 'nps install.hatchery.clean install.hatchery.copy',
-      clean: 'rimraf \"%localappdata%/CSE/CamelotUnchained/4/INTERFACE/hud\"',
-      copy: 'copyup dist/**/* \"%localappdata%/CSE/CamelotUnchained/4/INTERFACE/' + UI_NAME + '\"',
-    }
+    hatchery: installServer('hatchery', 4),
+  }
+}
+
+function INTERFACE(n) {
+  return `%localappdata%/CSE/CamelotUnchained/${n}/INTERFACE`;
+}
+
+function installServer(name, n) {
+  return {
+    script: `nps install.${name}.clean install.${name}.copy install.${name}.nodev`,
+    clean: `rimraf \"${INTERFACE(n)}/${UI_NAME}"`,
+    copy: `copyup dist/**/* \"${INTERFACE(n)}/${UI_NAME}/"`,
+    nodev: `rimraf \"${INTERFACE(n)}/${UI_NAME}/dev.config.js"`,
   }
 }
