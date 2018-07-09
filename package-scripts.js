@@ -5,12 +5,11 @@
  */
 
 const npsUtils = require('nps-utils');
+const package = require('./package.json');
 
 const requires = [ 'react', 'react-dom', 'es6-promise' ];
 const transpiled = 'build/transpiled/index.js';
 const output = 'dist/js/index.js';
-
-const UI_NAME = 'sample-ui';
 
 module.exports = {
   scripts: {
@@ -89,12 +88,17 @@ module.exports = {
 
     // Short hand for build+watch
     dev: 'nps build watch',
-  },
 
-  // installers
-  install: {
-    hatchery: installServer('hatchery', 4),
-  }
+    // installers
+    install: {
+      hatchery: installServer('hatchery', 4),
+    },
+
+    // publish
+    publish: {
+      script: 'rimraf dist/dev.config*.js && node package.js',
+    }
+  },
 }
 
 function INTERFACE(n) {
@@ -104,8 +108,8 @@ function INTERFACE(n) {
 function installServer(name, n) {
   return {
     script: `nps install.${name}.clean install.${name}.copy install.${name}.nodev`,
-    clean: `rimraf \"${INTERFACE(n)}/${UI_NAME}"`,
-    copy: `copyup dist/**/* \"${INTERFACE(n)}/${UI_NAME}/"`,
-    nodev: `rimraf \"${INTERFACE(n)}/${UI_NAME}/dev.config.js"`,
+    clean: `rimraf \"${INTERFACE(n)}/${package.name}"`,
+    copy: `copyup dist/**/* \"${INTERFACE(n)}/${package.name}/"`,
+    nodev: `rimraf \"${INTERFACE(n)}/${package.name}/dev.config*.js"`,
   }
 }

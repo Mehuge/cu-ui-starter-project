@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "mehuge-ui",
+  "name": "myui",
   "version": "0.1.0",
   "description": "Mehuge's Camelot Unchained UIs",
   "license": "MPL-2.0",
@@ -53,6 +53,7 @@
     "browserify-casesensitiverequire": "^1.0.1",
     "copyfiles": "^1.0.0",
     "envify": "^4.0.0",
+    "folder-zip": "0.0.5",
     "livereload": "^0.7.0",
     "mkdirp": "^0.5.1",
     "node-sass": "^4.9.0",
